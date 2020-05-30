@@ -1,0 +1,4704 @@
+{
+  "v": "1",
+  "id": "86d44e0b-8565-46bc-9eeb-44b84239007d",
+  "rev": 3,
+  "name": "Sophos XG",
+  "summary": "Sophos XG Content Pack",
+  "description": "This content pack for the Sophos XG Firewall and contains everything you need to visualize your firewall log data.",
+  "vendor": "Jeff Singleton (@HackDefendr)",
+  "url": "https://github.com/hackdefendr",
+  "parameters": [],
+  "entities": [
+    {
+      "v": "1",
+      "type": {
+        "name": "dashboard",
+        "version": "2"
+      },
+      "id": "f4ff7511-1b2b-44f8-8f3b-dadd33daef6f",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": "Syslog from a Sophos XG Firewall to Graylog"
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "20b49579-1f4d-4493-8554-8e6cabc9367b",
+              "timerange": {
+                "type": "relative",
+                "range": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "streams": [
+                    "b42a2545-a358-40e3-821c-32ee83ab5513"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "src_ip_geolocation",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "73530461-b5f4-4fda-a9b5-c866aa5cbe8f",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "category",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "bc7ed6bc-3e71-41db-b589-826bb97239c9",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": null,
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "offset": 0,
+                  "streams": [
+                    "b42a2545-a358-40e3-821c-32ee83ab5513"
+                  ],
+                  "filter": null,
+                  "decorators": [
+                    {
+                      "id": "5ecc355dcb6890d9f8e385dd",
+                      "type": "org.graylog2.decorators.FormatStringDecorator",
+                      "config": {
+                        "format_string": "${source} - ${message}",
+                        "require_all_fields": false,
+                        "target_field": "message"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "type": "messages",
+                  "id": "d3045ae1-d4bb-4819-87c4-8188c2f919f7",
+                  "limit": 150
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "streams": [
+                    "b42a2545-a358-40e3-821c-32ee83ab5513"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "23d3f6e6-832d-4079-a794-9507498c787a",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2020-05-25T23:19:47.032Z"
+        },
+        "created_at": "2020-05-25T20:55:23.770Z",
+        "requires": {},
+        "state": {
+          "20b49579-1f4d-4493-8554-8e6cabc9367b": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "Sophos XG"
+              },
+              "widget": {
+                "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff": "Sophos XG Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "52ca40cb-873f-431d-bd4f-20182e233aaa",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "b42a2545-a358-40e3-821c-32ee83ab5513"
+                ],
+                "config": {
+                  "visualization": "map",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "src_ip_geolocation",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": {
+                    "viewport": {
+                      "zoom": 2,
+                      "center_x": 0,
+                      "center_y": 0
+                    }
+                  },
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "79b78e03-cdf7-4d44-aa23-1988270bf1e7",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "streams": [],
+                "config": {
+                  "visualization": "pie",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "category",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff",
+                "type": "messages",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "b42a2545-a358-40e3-821c-32ee83ab5513"
+                ],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source",
+                    "src_ip",
+                    "dst_port",
+                    "src_ip_city_name",
+                    "src_ip_country_code"
+                  ],
+                  "show_message_row": false,
+                  "decorators": [
+                    {
+                      "id": "5ecc355dcb6890d9f8e385dd",
+                      "type": "org.graylog2.decorators.FormatStringDecorator",
+                      "config": {
+                        "format_string": "${source} - ${message}",
+                        "require_all_fields": false,
+                        "target_field": "message"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "8e609dc5-f302-4c7c-a52c-d690cdafeb37",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "b42a2545-a358-40e3-821c-32ee83ab5513"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff": [
+                "d3045ae1-d4bb-4819-87c4-8188c2f919f7"
+              ],
+              "52ca40cb-873f-431d-bd4f-20182e233aaa": [
+                "73530461-b5f4-4fda-a9b5-c866aa5cbe8f"
+              ],
+              "8e609dc5-f302-4c7c-a52c-d690cdafeb37": [
+                "23d3f6e6-832d-4079-a794-9507498c787a"
+              ],
+              "79b78e03-cdf7-4d44-aa23-1988270bf1e7": [
+                "bc7ed6bc-3e71-41db-b589-826bb97239c9"
+              ]
+            },
+            "positions": {
+              "8e609dc5-f302-4c7c-a52c-d690cdafeb37": {
+                "col": 9,
+                "row": 1,
+                "height": 4,
+                "width": 4
+              },
+              "79b78e03-cdf7-4d44-aa23-1988270bf1e7": {
+                "col": 1,
+                "row": 1,
+                "height": 4,
+                "width": 8
+              },
+              "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff": {
+                "col": 1,
+                "row": 11,
+                "height": 5,
+                "width": "Infinity"
+              },
+              "52ca40cb-873f-431d-bd4f-20182e233aaa": {
+                "col": 1,
+                "row": 5,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG Firewall"
+        },
+        "type": "DASHBOARD",
+        "description": {
+          "@type": "string",
+          "@value": "This is a basic dashboard for displaying log data sent via Syslog from a Sophos XG Firewall to a Graylog instance."
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "dashboard",
+        "version": "2"
+      },
+      "id": "86d757e9-d2c5-4dd8-bbf2-4460982e82fb",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": "Syslog from a Sophos XG Firewall to Graylog"
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "20b49579-1f4d-4493-8554-8e6cabc9367b",
+              "timerange": {
+                "type": "relative",
+                "range": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": null,
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "offset": 0,
+                  "streams": [
+                    "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                  ],
+                  "filter": null,
+                  "decorators": [
+                    {
+                      "id": "5ecc355dcb6890d9f8e385dd",
+                      "type": "org.graylog2.decorators.FormatStringDecorator",
+                      "config": {
+                        "format_string": "${source} - ${message}",
+                        "require_all_fields": false,
+                        "target_field": "message"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "type": "messages",
+                  "id": "35328ac8-eaa4-48e6-b3f0-c1c097594749",
+                  "limit": 150
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 300
+                  },
+                  "streams": [
+                    "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "src_ip_country_code",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "f26e69ff-2afa-445c-a6d6-43c36a13b7ea",
+                  "column_groups": [
+                    {
+                      "type": "values",
+                      "field": "src_ip_city_name",
+                      "limit": 15
+                    }
+                  ],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "category",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "ecd96931-0b1c-48de-bbc1-077d23b8bda9",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "streams": [
+                    "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "93d2ba34-a052-448e-90f3-be4f5c784940",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 86400
+                  },
+                  "streams": [
+                    "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "src_ip_geolocation",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "1aa90f7f-b397-4838-9ef7-613c3fd0d3f8",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2020-05-30T20:15:24.113Z"
+        },
+        "created_at": "2020-05-25T20:55:23.770Z",
+        "requires": {},
+        "state": {
+          "20b49579-1f4d-4493-8554-8e6cabc9367b": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "Sophos XG"
+              },
+              "widget": {
+                "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff": "Sophos XG Messages",
+                "79b78e03-cdf7-4d44-aa23-1988270bf1e7": "Sophos XG Category Chart",
+                "8b50bd9e-c1aa-460b-bf90-8f363bebb1dd": "Sophos XG Heatmap (src_ip_country_code)",
+                "8e609dc5-f302-4c7c-a52c-d690cdafeb37": "Sophos XG Message Count",
+                "52ca40cb-873f-431d-bd4f-20182e233aaa": "Sophos XG Attack Map"
+              }
+            },
+            "widgets": [
+              {
+                "id": "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff",
+                "type": "messages",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                ],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source",
+                    "src_ip",
+                    "dst_port",
+                    "src_ip_city_name",
+                    "src_ip_country_code"
+                  ],
+                  "show_message_row": false,
+                  "decorators": [
+                    {
+                      "id": "5ecc355dcb6890d9f8e385dd",
+                      "type": "org.graylog2.decorators.FormatStringDecorator",
+                      "config": {
+                        "format_string": "${source} - ${message}",
+                        "require_all_fields": false,
+                        "target_field": "message"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "79b78e03-cdf7-4d44-aa23-1988270bf1e7",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "streams": [],
+                "config": {
+                  "visualization": "pie",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "category",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "52ca40cb-873f-431d-bd4f-20182e233aaa",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                ],
+                "config": {
+                  "visualization": "map",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "src_ip_geolocation",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": {
+                    "viewport": {
+                      "zoom": 2,
+                      "center_x": 0,
+                      "center_y": 0
+                    }
+                  },
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "8e609dc5-f302-4c7c-a52c-d690cdafeb37",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 86400
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "8b50bd9e-c1aa-460b-bf90-8f363bebb1dd",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 300
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+                },
+                "streams": [
+                  "e53a8e5b-f13c-4f64-9eba-ae74337d0140"
+                ],
+                "config": {
+                  "visualization": "heatmap",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "src_ip_country_code",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [
+                    {
+                      "field": "src_ip_city_name",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "8e609dc5-f302-4c7c-a52c-d690cdafeb37": [
+                "93d2ba34-a052-448e-90f3-be4f5c784940"
+              ],
+              "79b78e03-cdf7-4d44-aa23-1988270bf1e7": [
+                "ecd96931-0b1c-48de-bbc1-077d23b8bda9"
+              ],
+              "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff": [
+                "35328ac8-eaa4-48e6-b3f0-c1c097594749"
+              ],
+              "52ca40cb-873f-431d-bd4f-20182e233aaa": [
+                "1aa90f7f-b397-4838-9ef7-613c3fd0d3f8"
+              ],
+              "8b50bd9e-c1aa-460b-bf90-8f363bebb1dd": [
+                "f26e69ff-2afa-445c-a6d6-43c36a13b7ea"
+              ]
+            },
+            "positions": {
+              "8e609dc5-f302-4c7c-a52c-d690cdafeb37": {
+                "col": 9,
+                "row": 1,
+                "height": 4,
+                "width": 4
+              },
+              "79b78e03-cdf7-4d44-aa23-1988270bf1e7": {
+                "col": 1,
+                "row": 1,
+                "height": 8,
+                "width": 8
+              },
+              "f01768a4-3a01-4237-b9fc-3e7cb0b2c1ff": {
+                "col": 1,
+                "row": 15,
+                "height": 5,
+                "width": "Infinity"
+              },
+              "52ca40cb-873f-431d-bd4f-20182e233aaa": {
+                "col": 1,
+                "row": 9,
+                "height": 6,
+                "width": "Infinity"
+              },
+              "8b50bd9e-c1aa-460b-bf90-8f363bebb1dd": {
+                "col": 9,
+                "row": 5,
+                "height": 4,
+                "width": 4
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG Firewall"
+        },
+        "type": "DASHBOARD",
+        "description": {
+          "@type": "string",
+          "@value": "This is a basic dashboard for displaying log data sent via Syslog from a Sophos XG Firewall to a Graylog instance."
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "c44b429a-6a67-4f8c-b2d8-bf7575fe0741",
+      "data": {
+        "name": "SYSLOGHOST",
+        "pattern": "%{IPORHOST}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ecb8eea1-ea8c-4fe0-be3f-498e1abc2a10",
+      "data": {
+        "name": "HOSTPORT",
+        "pattern": "%{IPORHOST}:%{POSINT}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "7fb512f6-e030-462d-a400-751838411b5e",
+      "data": {
+        "name": "DATA",
+        "pattern": ".*?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ee4849f6-389a-4453-b16c-07925df8996e",
+      "data": {
+        "name": "BASE10NUM",
+        "pattern": "(?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\\.[0-9]+)?)|(?:\\.[0-9]+)))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "5c7e2853-c090-4a74-844b-1a4882ebf0be",
+      "data": {
+        "name": "MAC",
+        "pattern": "(?:%{CISCOMAC}|%{WINDOWSMAC}|%{COMMONMAC})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "679837b0-77d6-467d-aabe-5fcd46067737",
+      "data": {
+        "name": "SYSLOGPROG",
+        "pattern": "%{PROG:program}(?:\\[%{POSINT:pid}\\])?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "c475e809-cf7f-4568-8293-8fd88ebd5663",
+      "data": {
+        "name": "IP",
+        "pattern": "(?:%{IPV6}|%{IPV4})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "dc4c0eea-df2e-4e89-b26e-d0a7ea60035b",
+      "data": {
+        "name": "SYSLOGBASE",
+        "pattern": "%{SYSLOGTIMESTAMP:timestamp} (?:%{SYSLOGFACILITY} )?%{SYSLOGHOST:logsource} %{SYSLOGPROG}:"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "44d3df99-8b97-43b6-97ee-27d75ca1163b",
+      "data": {
+        "name": "URIPARAM",
+        "pattern": "\\?[A-Za-z0-9$.+!*'|(){},~@#%&/=:;_?\\-\\[\\]<>]*"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "92812edc-9e4f-40d5-a782-0b6646085e5c",
+      "data": {
+        "name": "SECOND",
+        "pattern": "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ac010342-2a96-4a28-9c39-d689109e6638",
+      "data": {
+        "name": "DATE",
+        "pattern": "%{DATE_US}|%{DATE_EU}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "bb84dc6c-355d-4977-9054-093a20a3f481",
+      "data": {
+        "name": "HTTPDERROR_DATE",
+        "pattern": "%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "2ca7c047-745a-4302-9f4b-73705bc40a76",
+      "data": {
+        "name": "ISO8601_TIMEZONE",
+        "pattern": "(?:Z|[+-]%{HOUR}(?::?%{MINUTE}))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "2ca0dbf7-8088-4aac-b70d-67d788eea4d6",
+      "data": {
+        "name": "TIME",
+        "pattern": "(?!<[0-9])%{HOUR}:%{MINUTE}(?::%{SECOND})(?![0-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "1fa8ff0c-8e52-4a0a-98f1-2411f5f09630",
+      "data": {
+        "name": "DATESTAMP_EVENTLOG",
+        "pattern": "%{YEAR}%{MONTHNUM2}%{MONTHDAY}%{HOUR}%{MINUTE}%{SECOND}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "8a0b2f17-a3b8-4c1a-99db-ae3e96bc627f",
+      "data": {
+        "name": "BASE16NUM",
+        "pattern": "(?<![0-9A-Fa-f])(?:[+-]?(?:0x)?(?:[0-9A-Fa-f]+))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "82f2835d-a996-488d-a571-dda4aa6dc913",
+      "data": {
+        "name": "DATESTAMP",
+        "pattern": "%{DATE}[- ]%{TIME}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "0b2e9e69-6b48-450e-bd8e-a6a55b8f3d90",
+      "data": {
+        "name": "MONTHNUM2",
+        "pattern": "(?:0[1-9]|1[0-2])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "359b7355-9eb7-4cff-912f-089c322069ab",
+      "data": {
+        "name": "QS",
+        "pattern": "%{QUOTEDSTRING}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "d7148de3-f479-463f-8318-878cf399c703",
+      "data": {
+        "name": "URIPATHPARAM",
+        "pattern": "%{URIPATH}(?:%{URIPARAM})?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "fbe1eb96-eeff-448f-91e2-e5e35d9ea5c4",
+      "data": {
+        "name": "GREEDYDATA",
+        "pattern": ".*"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "794fbac8-161d-4312-b8b3-0259d82c0b72",
+      "data": {
+        "name": "URI",
+        "pattern": "%{URIPROTO}://(?:%{USER}(?::[^@]*)?@)?(?:%{URIHOST})?(?:%{URIPATHPARAM})?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ab808a63-0a68-46b1-a45e-d5d15752fce2",
+      "data": {
+        "name": "NUMBER",
+        "pattern": "(?:%{BASE10NUM})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "73ec1b2d-72b2-4b27-9729-e7eb1641e99c",
+      "data": {
+        "name": "SYSLOGFACILITY",
+        "pattern": "<%{NONNEGINT:facility}.%{NONNEGINT:priority}>"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "51b4ce8f-2ba7-477d-9562-b6f4844edffd",
+      "data": {
+        "name": "PROG",
+        "pattern": "[\\x21-\\x5a\\x5c\\x5e-\\x7e]+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "2bc5b0f9-c18d-46eb-8887-3156f6de37e6",
+      "data": {
+        "name": "NOTSPACE",
+        "pattern": "\\S+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "cba8c35d-d463-4921-af1b-d9dfbd7a1f3f",
+      "data": {
+        "name": "BASE16FLOAT",
+        "pattern": "\\b(?<![0-9A-Fa-f.])(?:[+-]?(?:0x)?(?:(?:[0-9A-Fa-f]+(?:\\.[0-9A-Fa-f]*)?)|(?:\\.[0-9A-Fa-f]+)))\\b"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "53931ce4-741c-4718-85da-47e25253be4c",
+      "data": {
+        "name": "TZ",
+        "pattern": "(?:[PMCE][SD]T|UTC)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "c143f578-4636-4c61-ad27-95e780281989",
+      "data": {
+        "name": "UNIXPATH",
+        "pattern": "(/([\\w_%!$@:.,~-]+|\\\\.)*)+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "7b502c62-980f-4540-9a09-4e46e713b14e",
+      "data": {
+        "name": "COMMONMAC",
+        "pattern": "(?:(?:[A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "91b2cecb-d683-4db9-8603-a42a3bb4b84f",
+      "data": {
+        "name": "MONTHDAY",
+        "pattern": "(?:(?:0[1-9])|(?:[12][0-9])|(?:3[01])|[1-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "450f8bf2-3438-42f0-8a5b-21d9c4136cec",
+      "data": {
+        "name": "WINDOWSMAC",
+        "pattern": "(?:(?:[A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "b1547046-115a-4982-839c-d80e90c92339",
+      "data": {
+        "name": "CISCOMAC",
+        "pattern": "(?:(?:[A-Fa-f0-9]{4}\\.){2}[A-Fa-f0-9]{4})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "eabeb5a2-56a7-42fc-8537-164b4cdc3d2b",
+      "data": {
+        "name": "QUOTEDSTRING",
+        "pattern": "(?>(?<!\\\\)(?>\"(?>\\\\.|[^\\\\\"]+)+\"|\"\"|(?>'(?>\\\\.|[^\\\\']+)+')|''|(?>`(?>\\\\.|[^\\\\`]+)+`)|``))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ea1e3a29-73ac-4c4b-9421-b6e07330ef5d",
+      "data": {
+        "name": "PATH",
+        "pattern": "(?:%{UNIXPATH}|%{WINPATH})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "3fa48fdb-b319-46cd-95fc-7bdcef554c2e",
+      "data": {
+        "name": "DATE_EU",
+        "pattern": "%{MONTHDAY}[./-]%{MONTHNUM}[./-]%{YEAR}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "76a87194-bf5b-498d-9f48-069f5b56ebac",
+      "data": {
+        "name": "EMAILLOCALPART",
+        "pattern": "[a-zA-Z][a-zA-Z0-9_.+-=:]+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "1193a65a-f233-4516-8bb8-f948254a259f",
+      "data": {
+        "name": "URIHOST",
+        "pattern": "%{IPORHOST}(?::%{POSINT:port})?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "1b87465c-7c06-47b6-9259-5c35cdc3b1d0",
+      "data": {
+        "name": "ISO8601_SECOND",
+        "pattern": "(?:%{SECOND}|60)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "f4111c3b-7290-49d5-93fb-27cc9726facc",
+      "data": {
+        "name": "URIPROTO",
+        "pattern": "[A-Za-z]+(\\+[A-Za-z+]+)?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "bcb0dd71-1151-4e0c-ae17-63f40e828f8e",
+      "data": {
+        "name": "USER",
+        "pattern": "%{USERNAME}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "05964ccf-934d-4dee-a77a-e272bcfc3001",
+      "data": {
+        "name": "UUID",
+        "pattern": "[A-Fa-f0-9]{8}-(?:[A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "4a111ec7-a809-47ec-8ec4-b4b736a104fa",
+      "data": {
+        "name": "INT",
+        "pattern": "(?:[+-]?(?:[0-9]+))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "3200766b-4b32-4f93-8f5d-dd92663b7751",
+      "data": {
+        "name": "EMAILADDRESS",
+        "pattern": "%{EMAILLOCALPART}@%{HOSTNAME}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "e70ae397-115d-48e3-9c25-b0fbb175b607",
+      "data": {
+        "name": "IPV4",
+        "pattern": "(?<![0-9])(?:(?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))(?![0-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "4fe96479-6b21-4e57-b562-f5ed5fbe196f",
+      "data": {
+        "name": "SPACE",
+        "pattern": "\\s*"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "5942e5b4-24bf-4e56-901c-203d9f803056",
+      "data": {
+        "name": "HTTPDUSER",
+        "pattern": "%{EMAILADDRESS}|%{USER}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "47685ec5-1167-4163-a904-de138e98d350",
+      "data": {
+        "name": "LOGLEVEL",
+        "pattern": "([Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|INFO|[Ww]arn?(?:ing)?|WARN?(?:ING)?|[Ee]rr?(?:or)?|ERR?(?:OR)?|[Cc]rit?(?:ical)?|CRIT?(?:ICAL)?|[Ff]atal|FATAL|[Ss]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "8844bb0a-3733-4e42-94bb-45710fe9dfa1",
+      "data": {
+        "name": "WINPATH",
+        "pattern": "(?>[A-Za-z]+:|\\\\)(?:\\\\[^\\\\?*]*)+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "d95fd997-5a16-4d52-b1d0-3461ea8a8a88",
+      "data": {
+        "name": "HOUR",
+        "pattern": "(?:2[0123]|[01]?[0-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "aa5b9086-9960-4b79-932b-c7db7e275bcb",
+      "data": {
+        "name": "SYSLOGTIMESTAMP",
+        "pattern": "%{MONTH} +%{MONTHDAY} %{TIME}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "7e09ad1f-c011-4c2f-90c0-fc80d43b1da6",
+      "data": {
+        "name": "DAY",
+        "pattern": "(?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ae1b5c13-81c5-4df1-b44b-00384227729e",
+      "data": {
+        "name": "HTTPD20_ERRORLOG",
+        "pattern": "\\[%{HTTPDERROR_DATE:timestamp}\\] \\[%{LOGLEVEL:loglevel}\\] (?:\\[client %{IPORHOST:clientip}\\] ){0,1}%{GREEDYDATA:errormsg}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "be27c831-3e7c-43c4-9d32-55e225862eff",
+      "data": {
+        "name": "HTTPDATE",
+        "pattern": "%{MONTHDAY}/%{MONTH}/%{YEAR}:%{TIME} %{INT}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "076ece80-0901-4d24-b691-bb3c6be23eb5",
+      "data": {
+        "name": "COMBINEDAPACHELOG",
+        "pattern": "%{COMMONAPACHELOG} %{QS:referrer} %{QS:agent}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "13b2743b-5e3d-4536-9f65-fde880603d90",
+      "data": {
+        "name": "URIPATH",
+        "pattern": "(?:/[A-Za-z0-9$.+!*'(){},~:;=@#%_\\-]*)+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "f8377a79-8015-4f36-961f-8dd9c9d4d0d2",
+      "data": {
+        "name": "DATE_US",
+        "pattern": "%{MONTHNUM}[/-]%{MONTHDAY}[/-]%{YEAR}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "f550c319-28ad-4520-8724-09a4cc55776c",
+      "data": {
+        "name": "USERNAME",
+        "pattern": "[a-zA-Z0-9._-]+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "324b8527-e20a-41ed-98d2-777b7af997f9",
+      "data": {
+        "name": "TIMESTAMP_ISO8601",
+        "pattern": "%{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:?%{MINUTE}(?::?%{SECOND})?%{ISO8601_TIMEZONE}?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "9afc9381-558f-4f1e-87c6-47604ca790fa",
+      "data": {
+        "name": "HOSTNAME",
+        "pattern": "\\b(?:[0-9A-Za-z][0-9A-Za-z-]{0,62})(?:\\.(?:[0-9A-Za-z][0-9A-Za-z-]{0,62}))*(\\.?|\\b)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "cc22c17d-8723-49ee-a219-278466039598",
+      "data": {
+        "name": "HTTPD_ERRORLOG",
+        "pattern": "%{HTTPD20_ERRORLOG}|%{HTTPD24_ERRORLOG}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "89051513-4518-4936-9e22-17dbef8b2ec0",
+      "data": {
+        "name": "IPORHOST",
+        "pattern": "(?:%{IP}|%{HOSTNAME})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "831d5be3-1e5e-4eae-8202-767ae61ba2ae",
+      "data": {
+        "name": "IPV6",
+        "pattern": "((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "511d2020-6dc4-46c4-84a6-160c12ff78f2",
+      "data": {
+        "name": "TTY",
+        "pattern": "(?:/dev/(pts|tty([pq])?)(\\w+)?/?(?:[0-9]+))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "6e03c41e-7a13-42cf-849d-cb9e9f21b1e2",
+      "data": {
+        "name": "DATESTAMP_RFC822",
+        "pattern": "%{DAY} %{MONTH} %{MONTHDAY} %{YEAR} %{TIME} %{TZ}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "ba7c3458-1d4b-46e4-816b-893b0de448af",
+      "data": {
+        "name": "DATESTAMP_OTHER",
+        "pattern": "%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{TZ} %{YEAR}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "3f049d2e-853f-4d1a-bb6f-0473c916f889",
+      "data": {
+        "name": "MINUTE",
+        "pattern": "(?:[0-5][0-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "7ab01196-4201-41f9-a6c1-571df1afa0a9",
+      "data": {
+        "name": "DATESTAMP_RFC2822",
+        "pattern": "%{DAY}, %{MONTHDAY} %{MONTH} %{YEAR} %{TIME} %{ISO8601_TIMEZONE}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "215840bc-1927-423d-b2d6-208f7f81ca52",
+      "data": {
+        "name": "POSINT",
+        "pattern": "\\b(?:[1-9][0-9]*)\\b"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "f0651116-2c3c-49ac-aa7b-c309c8863f69",
+      "data": {
+        "name": "MONTHNUM",
+        "pattern": "(?:0?[1-9]|1[0-2])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "6fe11224-5947-42e8-a250-55673e21ff18",
+      "data": {
+        "name": "NONNEGINT",
+        "pattern": "\\b(?:[0-9]+)\\b"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "d1b35a38-d74e-4625-8e0e-f98db271c383",
+      "data": {
+        "name": "COMMONAPACHELOG",
+        "pattern": "%{IPORHOST:clientip} %{HTTPDUSER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp;date;dd/MMM/yyyy:HH:mm:ss Z}\\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "0345eb19-20b5-4594-9375-0813ca6a3e7b",
+      "data": {
+        "name": "MONTH",
+        "pattern": "\\b(?:Jan(?:uary|uar)?|Feb(?:ruary|ruar)?|M(?:a|ä)?r(?:ch|z)?|Apr(?:il)?|Ma(?:y|i)?|Jun(?:e|i)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|O(?:c|k)?t(?:ober)?|Nov(?:ember)?|De(?:c|z)(?:ember)?)\\b"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "5abbbdee-e93a-4084-a0b9-4d5665b48b2a",
+      "data": {
+        "name": "HTTPD24_ERRORLOG",
+        "pattern": "\\[%{HTTPDERROR_DATE:timestamp}\\] \\[%{WORD:module}:%{LOGLEVEL:loglevel}\\] \\[pid %{POSINT:pid}:tid %{NUMBER:tid}\\]( \\(%{POSINT:proxy_errorcode}\\)%{DATA:proxy_errormessage}:)?( \\[client %{IPORHOST:client}:%{POSINT:clientport}\\])? %{DATA:errorcode}: %{GREEDYDATA:message}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "6ffc91c0-bc32-46c9-b4f8-7e69b306f06d",
+      "data": {
+        "name": "YEAR",
+        "pattern": "(?>\\d\\d){1,2}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "6a31a858-45de-431c-821e-63cc86c459ad",
+      "data": {
+        "name": "WORD",
+        "pattern": "\\b\\w+\\b"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "input",
+        "version": "1"
+      },
+      "id": "a3f77575-5037-4a4e-a9bf-9e50a741f14d",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG"
+        },
+        "configuration": {
+          "expand_structured_data": {
+            "@type": "boolean",
+            "@value": true
+          },
+          "recv_buffer_size": {
+            "@type": "integer",
+            "@value": 262144
+          },
+          "port": {
+            "@type": "integer",
+            "@value": 5001
+          },
+          "number_worker_threads": {
+            "@type": "integer",
+            "@value": 2
+          },
+          "force_rdns": {
+            "@type": "boolean",
+            "@value": false
+          },
+          "allow_override_date": {
+            "@type": "boolean",
+            "@value": true
+          },
+          "bind_address": {
+            "@type": "string",
+            "@value": "0.0.0.0"
+          },
+          "store_full_message": {
+            "@type": "boolean",
+            "@value": true
+          }
+        },
+        "static_fields": {},
+        "type": {
+          "@type": "string",
+          "@value": "org.graylog2.inputs.syslog.udp.SyslogUDPInput"
+        },
+        "global": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "extractors": [
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "out_interface"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 13
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "out_interface=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "out_interface firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "category"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 18
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "category=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "category firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "application"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 19
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "application=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "application firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "method"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 22
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "method=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "method firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "profile"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 23
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "profile=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "profile firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "user_name"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 14
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "user_name=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "user_name firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "status_code"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 17
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "status_code=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "status_code firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "user_gp"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 15
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "user_gp=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "user_gp firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "device_name"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 2
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "device_name=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "device_name firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "message=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "message firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "src_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 4
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_ip=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "src_ip firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "dst_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 7
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_ip=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "dst_ip firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "device_id"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 1
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "device_id=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "device_id firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "priority"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 3
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "priority=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "priority firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "src_mac"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 6
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_mac=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "src_mac firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "dst_port"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 8
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "dst_port=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "dst_port firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "src_port"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 5
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "src_port=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "src_port firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "fw_rule_id"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 10
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "fw_rule_id=([^=]* )"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "fw_rule_id firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "protocol"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 11
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "protocol=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "protocol firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "in_interface"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 12
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "in_interface=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "in_interface firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "user_agent"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 16
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "user_agent=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "user_agent firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "exceptions"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 20
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "exceptions=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "exceptions firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "log_type"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 21
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "log_type=\"([^\"]*)\""
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "log_type firewall extractor"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          }
+        ]
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "bb64a282-3735-48d2-bf56-bb3ae19548d8",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"Sophos XG\"\nstage 0 match all\nrule \"priority name\"\nstage 1 match all\nrule \"GeoIP lookup: dst_ip\"\nrule \"GeoIP lookup: src_ip\"\nstage 2 match either\nrule \"XG Firewall Type\"\nrule \"XG Content Filter Type\"\nend"
+        },
+        "connected_streams": [
+          {
+            "@type": "string",
+            "@value": "000000000000000000000001"
+          }
+        ]
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "d8004f1b-0030-4545-b42c-7282dad6f92d",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"Sophos XG\"\nstage 0 match all\nrule \"priority name\"\nstage 1 match all\nrule \"GeoIP lookup: dst_ip\"\nrule \"GeoIP lookup: src_ip\"\nstage 2 match either\nrule \"XG Firewall Type\"\nrule \"XG Content Filter Type\"\nend"
+        },
+        "connected_streams": [
+          {
+            "@type": "string",
+            "@value": "000000000000000000000001"
+          }
+        ]
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "ce66d735-1737-4694-a0bc-150a6e4a021d",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "GeoIP lookup: dst_ip"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Destination GeoIP Lookup"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"GeoIP lookup: dst_ip\"\n  when\n    has_field(\"dst_ip\")\n  then\n    let geo = lookup(\"geoip\", to_string($message.dst_ip));\n    set_field(\"dst_ip_geo_location\", geo[\"coordinates\"]);\n    set_field(\"dst_country_code\", geo[\"country\"].iso_code);\n    set_field(\"dst_ip_geo_city\", geo[\"city\"].names.en);\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "44f1c867-0a2d-4c0d-97da-dad7f503d511",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "GeoIP lookup: src_ip"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Source GeoIP Lookup"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"GeoIP lookup: src_ip\"\n  when\n    has_field(\"src_ip\")\n  then\n    let geo = lookup(\"geoip\", to_string($message.src_ip));\n    set_field(\"src_ip_geo_location\", geo[\"coordinates\"]);\n    set_field(\"src_country_code\", geo[\"country\"].iso_code);\n    set_field(\"src_ip_geo_city\", geo[\"city\"].names.en);\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "623e7a65-dbc0-4203-8f97-46be321bbdbc",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Pipeline Processed Flag"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"Pipeline Processed Flag\"\nwhen\n    true\nthen\n    set_field(\"pipeline_processed\",true);\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "c10fb17f-5941-44ec-9ca6-74559601f10b",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Content Filter Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Content Filter Type\"\nwhen\n    to_string($message.log_type) == \"Content Filtering\"\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{QUOTEDSTRING:action}%{SPACE}priority=%{GREEDYDATA:priority}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}user_gp=%{QUOTEDSTRING:user_group}%{SPACE}iap=%{INT:iap}%{SPACE}category=%{QUOTEDSTRING:category}%{SPACE}category_type=%{QUOTEDSTRING:category_type}%{SPACE}url=%{QUOTEDSTRING:url}%{SPACE}contenttype=%{QUOTEDSTRING:content_type}%{SPACE}override_token=%{QUOTEDSTRING:override_token}%{SPACE}httpresponsecode=%{QUOTEDSTRING:http_response_code}%{SPACE}src_ip=%{IP:src_ip}%{SPACE}dst_ip=%{IP:dst_ip}%{SPACE}protocol=%{QUOTEDSTRING:protocol}%{SPACE}src_port=%{INT:src_port}%{SPACE}dst_port=%{INT:dst_port}%{SPACE}sent_bytes=%{INT:sent_bytes;int}%{SPACE}recv_bytes=%{INT:recv_bytes;int}%{SPACE}domain=%{URIHOST:domain}%{SPACE}exceptions=%{DATA:exceptions}%{SPACE}activityname=%{QUOTEDSTRING:activity_name}%{SPACE}reason=%{QUOTEDSTRING:reason}%{SPACE}user_agent=%{QUOTEDSTRING:user_agent}%{SPACE}status_code=%{QUOTEDSTRING:status_code}%{SPACE}transactionid=%{DATA:transaction_id}%{SPACE}referer=%{QUOTEDSTRING:referer}%{SPACE}download_file_name=%{QUOTEDSTRING:downloaded_file_name}%{SPACE}download_file_type=%{QUOTEDSTRING:downloaded_file_type}%{SPACE}upload_file_name=%{QUOTEDSTRING}%{SPACE}upload_file_type=%{QUOTEDSTRING}%{SPACE}con_id=%{INT:con_id}%{SPACE}application=%{QUOTEDSTRING:application}%{SPACE}app_is_cloud=%{INT:app_is_cloud;boolean}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "b696df0e-a8d6-4e35-87e7-1cfbbc4da62e",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Event Authentication Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Event Authentication Type\"\nwhen\n    (to_string($message.log_type) == \"Event\") && (to_string($message.log_sub_type) == \"Authentication\")\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{QUOTEDSTRING:status}%{SPACE}priority=%{WORD:priority}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}usergroupname=%{QUOTEDSTRING:user_group}%{SPACE}auth_client=%{QUOTEDSTRING:auth_client}%{SPACE}auth_mechanism=%{QUOTEDSTRING:auth_mechanism}%{SPACE}reason=%{QUOTEDSTRING:reason}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}message=%{QUOTEDSTRING:auth_message}%{SPACE}name=%{QUOTEDSTRING:name}%{SPACE}src_mac=%{DATA:src_mac}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "7ea3b283-4690-4243-a0fc-e2770c19509e",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Firewall Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Firewall Type\"\nwhen\n    to_string($message.log_type) == \"Firewall\"\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{QUOTEDSTRING:action}%{SPACE}priority=%{WORD:priority}%{SPACE}duration=%{INT:duration}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}policy_type=%{INT:policy_type}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}user_gp=%{QUOTEDSTRING:user_group}%{SPACE}iap=%{INT:iap}%{SPACE}ips_policy_id=%{INT:ips_policy_id}%{SPACE}appfilter_policy_id=%{INT:app_filter_policy_id}%{SPACE}application=%{QUOTEDSTRING:application}%{SPACE}application_risk=%{INT:application_risk}%{SPACE}application_technology=%{QUOTEDSTRING:application_technology}%{SPACE}application_category=%{QUOTEDSTRING:application_category}%{SPACE}in_interface=%{QUOTEDSTRING:in_interface}%{SPACE}out_interface=%{QUOTEDSTRING:out_interface}%{SPACE}src_mac=%{DATA:src_mac}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}src_country_code=%{DATA:src_country_code}%{SPACE}dst_ip=%{DATA:dst_ip}%{SPACE}dst_country_code=%{DATA:dst_country_code}%{SPACE}protocol=%{QUOTEDSTRING:protocol}%{SPACE}(src_port=%{INT:src_port}%{SPACE}dst_port=%{INT:dst_port})?(icmp_type=%{INT:icmp_type}%{SPACE}icmp_code=%{INT:icmp_code})?%{SPACE}sent_pkts=%{INT:sent_pkts;int}%{SPACE}recv_pkts=%{INT:recv_pkts;int}%{SPACE}sent_bytes=%{INT:sent_bytes;int}%{SPACE}recv_bytes=%{INT:recv_bytes;int}%{SPACE}tran_src_ip=%{DATA:tran_src_ip}%{SPACE}tran_src_port=%{INT:tran_src_port}%{SPACE}tran_dst_ip=%{DATA:tran_dst_ip}%{SPACE}tran_dst_port=%{INT:tran_dst_port}%{SPACE}srczonetype=%{QUOTEDSTRING:src_zone_type}%{SPACE}srczone=%{QUOTEDSTRING:src_zone}%{SPACE}dstzonetype=%{QUOTEDSTRING:dst_zone_type}%{SPACE}dstzone=%{QUOTEDSTRING:dst_zone}%{SPACE}dir_disp=%{QUOTEDSTRING:dir_disp}%{SPACE}(connevent=%{QUOTEDSTRING:conn_event})?%{SPACE}connid=%{QUOTEDSTRING:conn_id}%{SPACE}vconnid=%{QUOTEDSTRING:v_conn_id}%{SPACE}hb_health=%{QUOTEDSTRING:hb_health}%{SPACE}message=%{QUOTEDSTRING:fw_message}%{SPACE}appresolvedby=%{QUOTEDSTRING:app_resolved_by}%{SPACE}app_is_cloud=%{INT:app_is_cloud;boolean}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "93f24958-868e-4840-baef-578974185e97",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG GUI Event Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG GUI Event Type\"\nwhen\n    to_string($message.log_type) == \"Event\" && to_string($message.log_component) == \"GUI\"\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{DATA:QUOTEDSTRING}%{SPACE}priority=%{WORD:priority}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}ZONE=%{QUOTEDSTRING:zone}%{SPACE}message=%{QUOTEDSTRING:event_message}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "a1830a1d-c932-4cf4-8766-e0a858c911d7",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG IDP Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG IDP Type\"\nwhen\n    to_string($message.log_type) == \"IDP\"\nthen\n    set_fields(\n        grok(\n            pattern: \"priority=%{WORD:priority}%{SPACE}idp_policy_id=%{INT:idp_policy_id}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}signature_id=%{INT:signature_id}%{SPACE}signature_msg=%{QUOTEDSTRING:signature_msg}%{SPACE}classification=%{QUOTEDSTRING:classification}%{SPACE}rule_priority=%{INT:rule_priority}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}src_country_code=%{DATA:src_country_code}%{SPACE}dst_ip=%{DATA:dst_ip}%{SPACE}dst_country_code=%{DATA:dst_country_code}%{SPACE}protocol=%{QUOTEDSTRING:protocol}%{SPACE}src_port=%{INT:src_port}%{SPACE}dst_port=%{INT:dst_port}%{SPACE}platform=%{QUOTEDSTRING:platform}%{SPACE}category=%{QUOTEDSTRING:category}%{SPACE}target=%{QUOTEDSTRING:target}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "02d216b7-1df5-4f7a-ab05-722f4737c4c8",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Log Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Log Type\"\nwhen\n    to_string($message.source) == \"xg.lan.paravantage.com\"\nthen\n    set_fields(\n        grok(\n            pattern: \"log_type=%{QUOTEDSTRING:log_type} log_component=%{QUOTEDSTRING:log_component} log_subtype=%{QUOTEDSTRING:log_sub_type}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "bc4fe7d8-5375-4a1a-aa2b-ef3cf6de58a8",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG SMTP Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG SMTP Type\"\nwhen\n    to_string($message.log_component) == \"SMTP\"\nthen\n    set_fields(\n        grok(\n            pattern: \"priority=%{WORD:priority}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{GREEDYDATA}from_email_address=%{QUOTEDSTRING:from_email_address}%{SPACE}to_email_address=%{QUOTEDSTRING:to_email_address}%{SPACE}email_subject=%{QUOTEDSTRING:email_subject}%{GREEDYDATA}src_domainname=%{QUOTEDSTRING:src_domain}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "00078048-0387-47f8-9285-30b2665e9cd1",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG System Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG System Type\"\nwhen\n    to_string($message.log_sub_type) == \"System\"\nthen\n    set_fields(\n        grok(\n            pattern: \"(status=%{QUOTEDSTRING:status})?%{SPACE}priority=%{WORD:priority}%{SPACE}(status=%{QUOTEDSTRING:status})?%{GREEDYDATA}message=%{QUOTEDSTRING:system_message}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "5a7a4a01-1751-4cf4-98ca-21b2f6b7c3b7",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "priority name"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"priority name\"\nwhen\n    true\nthen\n    set_field(\"priority\",syslog_level($message.priority));\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "4dde2a7e-563c-4bba-91c6-1bb6482a2a52",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "priority name"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"priority name\"\nwhen\n    true\nthen\n    set_field(\"priority\",syslog_level($message.priority));\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "c75e5f55-2374-413e-a820-991ee1929ce5",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "GeoIP lookup: dst_ip"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Destination GeoIP Lookup"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"GeoIP lookup: dst_ip\"\n  when\n    has_field(\"dst_ip\")\n  then\n    let geo = lookup(\"geoip\", to_string($message.dst_ip));\n    set_field(\"dst_ip_geo_location\", geo[\"coordinates\"]);\n    set_field(\"dst_country_code\", geo[\"country\"].iso_code);\n    set_field(\"dst_ip_geo_city\", geo[\"city\"].names.en);\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "ed75632a-42cc-425d-9346-2b3e0edaeb26",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Pipeline Processed Flag"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"Pipeline Processed Flag\"\nwhen\n    true\nthen\n    set_field(\"pipeline_processed\",true);\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "d405539b-d859-4865-8141-a1f4e579977b",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Content Filter Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Content Filter Type\"\nwhen\n    to_string($message.log_type) == \"Content Filtering\"\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{QUOTEDSTRING:action}%{SPACE}priority=%{GREEDYDATA:priority}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}user_gp=%{QUOTEDSTRING:user_group}%{SPACE}iap=%{INT:iap}%{SPACE}category=%{QUOTEDSTRING:category}%{SPACE}category_type=%{QUOTEDSTRING:category_type}%{SPACE}url=%{QUOTEDSTRING:url}%{SPACE}contenttype=%{QUOTEDSTRING:content_type}%{SPACE}override_token=%{QUOTEDSTRING:override_token}%{SPACE}httpresponsecode=%{QUOTEDSTRING:http_response_code}%{SPACE}src_ip=%{IP:src_ip}%{SPACE}dst_ip=%{IP:dst_ip}%{SPACE}protocol=%{QUOTEDSTRING:protocol}%{SPACE}src_port=%{INT:src_port}%{SPACE}dst_port=%{INT:dst_port}%{SPACE}sent_bytes=%{INT:sent_bytes;int}%{SPACE}recv_bytes=%{INT:recv_bytes;int}%{SPACE}domain=%{URIHOST:domain}%{SPACE}exceptions=%{DATA:exceptions}%{SPACE}activityname=%{QUOTEDSTRING:activity_name}%{SPACE}reason=%{QUOTEDSTRING:reason}%{SPACE}user_agent=%{QUOTEDSTRING:user_agent}%{SPACE}status_code=%{QUOTEDSTRING:status_code}%{SPACE}transactionid=%{DATA:transaction_id}%{SPACE}referer=%{QUOTEDSTRING:referer}%{SPACE}download_file_name=%{QUOTEDSTRING:downloaded_file_name}%{SPACE}download_file_type=%{QUOTEDSTRING:downloaded_file_type}%{SPACE}upload_file_name=%{QUOTEDSTRING}%{SPACE}upload_file_type=%{QUOTEDSTRING}%{SPACE}con_id=%{INT:con_id}%{SPACE}application=%{QUOTEDSTRING:application}%{SPACE}app_is_cloud=%{INT:app_is_cloud;boolean}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "c997f190-4369-4775-b620-2028423d2bcf",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Log Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Log Type\"\nwhen\n    to_string($message.source) == \"SFW\"\nthen\n    set_fields(\n        grok(\n            pattern: \"log_type=%{QUOTEDSTRING:log_type} log_component=%{QUOTEDSTRING:log_component} log_subtype=%{QUOTEDSTRING:log_sub_type}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "4a3d3b6b-1417-497c-9fda-e1b3dabf92e8",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG IDP Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG IDP Type\"\nwhen\n    to_string($message.log_type) == \"IDP\"\nthen\n    set_fields(\n        grok(\n            pattern: \"priority=%{WORD:priority}%{SPACE}idp_policy_id=%{INT:idp_policy_id}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}signature_id=%{INT:signature_id}%{SPACE}signature_msg=%{QUOTEDSTRING:signature_msg}%{SPACE}classification=%{QUOTEDSTRING:classification}%{SPACE}rule_priority=%{INT:rule_priority}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}src_country_code=%{DATA:src_country_code}%{SPACE}dst_ip=%{DATA:dst_ip}%{SPACE}dst_country_code=%{DATA:dst_country_code}%{SPACE}protocol=%{QUOTEDSTRING:protocol}%{SPACE}src_port=%{INT:src_port}%{SPACE}dst_port=%{INT:dst_port}%{SPACE}platform=%{QUOTEDSTRING:platform}%{SPACE}category=%{QUOTEDSTRING:category}%{SPACE}target=%{QUOTEDSTRING:target}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "86415f54-8ff9-4748-8704-4489a52eca79",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "GeoIP lookup: src_ip"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Source GeoIP Lookup"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"GeoIP lookup: src_ip\"\n  when\n    has_field(\"src_ip\")\n  then\n    let geo = lookup(\"geoip\", to_string($message.src_ip));\n    set_field(\"src_ip_geo_location\", geo[\"coordinates\"]);\n    set_field(\"src_country_code\", geo[\"country\"].iso_code);\n    set_field(\"src_ip_geo_city\", geo[\"city\"].names.en);\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "b937a1ee-0246-4e7c-9143-91bb0032a2c4",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG System Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG System Type\"\nwhen\n    to_string($message.log_sub_type) == \"System\"\nthen\n    set_fields(\n        grok(\n            pattern: \"(status=%{QUOTEDSTRING:status})?%{SPACE}priority=%{WORD:priority}%{SPACE}(status=%{QUOTEDSTRING:status})?%{GREEDYDATA}message=%{QUOTEDSTRING:system_message}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "49f77f71-a204-44b9-877a-240a4625e7ed",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG GUI Event Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG GUI Event Type\"\nwhen\n    to_string($message.log_type) == \"Event\" && to_string($message.log_component) == \"GUI\"\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{DATA:QUOTEDSTRING}%{SPACE}priority=%{WORD:priority}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}ZONE=%{QUOTEDSTRING:zone}%{SPACE}message=%{QUOTEDSTRING:event_message}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "de5224c6-71dc-40f0-89ba-e368a521faf0",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Event Authentication Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Event Authentication Type\"\nwhen\n    (to_string($message.log_type) == \"Event\") && (to_string($message.log_sub_type) == \"Authentication\")\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{QUOTEDSTRING:status}%{SPACE}priority=%{WORD:priority}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}usergroupname=%{QUOTEDSTRING:user_group}%{SPACE}auth_client=%{QUOTEDSTRING:auth_client}%{SPACE}auth_mechanism=%{QUOTEDSTRING:auth_mechanism}%{SPACE}reason=%{QUOTEDSTRING:reason}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}message=%{QUOTEDSTRING:auth_message}%{SPACE}name=%{QUOTEDSTRING:name}%{SPACE}src_mac=%{DATA:src_mac}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "0b5b5123-115b-4309-986f-05042b749967",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG Firewall Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG Firewall Type\"\nwhen\n    to_string($message.log_type) == \"Firewall\"\nthen\n    set_fields(\n        grok(\n            pattern: \"status=%{QUOTEDSTRING:action}%{SPACE}priority=%{WORD:priority}%{SPACE}duration=%{INT:duration}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}policy_type=%{INT:policy_type}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{SPACE}user_gp=%{QUOTEDSTRING:user_group}%{SPACE}iap=%{INT:iap}%{SPACE}ips_policy_id=%{INT:ips_policy_id}%{SPACE}appfilter_policy_id=%{INT:app_filter_policy_id}%{SPACE}application=%{QUOTEDSTRING:application}%{SPACE}application_risk=%{INT:application_risk}%{SPACE}application_technology=%{QUOTEDSTRING:application_technology}%{SPACE}application_category=%{QUOTEDSTRING:application_category}%{SPACE}in_interface=%{QUOTEDSTRING:in_interface}%{SPACE}out_interface=%{QUOTEDSTRING:out_interface}%{SPACE}src_mac=%{DATA:src_mac}%{SPACE}src_ip=%{DATA:src_ip}%{SPACE}src_country_code=%{DATA:src_country_code}%{SPACE}dst_ip=%{DATA:dst_ip}%{SPACE}dst_country_code=%{DATA:dst_country_code}%{SPACE}protocol=%{QUOTEDSTRING:protocol}%{SPACE}(src_port=%{INT:src_port}%{SPACE}dst_port=%{INT:dst_port})?(icmp_type=%{INT:icmp_type}%{SPACE}icmp_code=%{INT:icmp_code})?%{SPACE}sent_pkts=%{INT:sent_pkts;int}%{SPACE}recv_pkts=%{INT:recv_pkts;int}%{SPACE}sent_bytes=%{INT:sent_bytes;int}%{SPACE}recv_bytes=%{INT:recv_bytes;int}%{SPACE}tran_src_ip=%{DATA:tran_src_ip}%{SPACE}tran_src_port=%{INT:tran_src_port}%{SPACE}tran_dst_ip=%{DATA:tran_dst_ip}%{SPACE}tran_dst_port=%{INT:tran_dst_port}%{SPACE}srczonetype=%{QUOTEDSTRING:src_zone_type}%{SPACE}srczone=%{QUOTEDSTRING:src_zone}%{SPACE}dstzonetype=%{QUOTEDSTRING:dst_zone_type}%{SPACE}dstzone=%{QUOTEDSTRING:dst_zone}%{SPACE}dir_disp=%{QUOTEDSTRING:dir_disp}%{SPACE}(connevent=%{QUOTEDSTRING:conn_event})?%{SPACE}connid=%{QUOTEDSTRING:conn_id}%{SPACE}vconnid=%{QUOTEDSTRING:v_conn_id}%{SPACE}hb_health=%{QUOTEDSTRING:hb_health}%{SPACE}message=%{QUOTEDSTRING:fw_message}%{SPACE}appresolvedby=%{QUOTEDSTRING:app_resolved_by}%{SPACE}app_is_cloud=%{INT:app_is_cloud;boolean}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "4ce4c430-5960-4c31-a49b-01b8733f9c16",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "XG SMTP Type"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"XG SMTP Type\"\nwhen\n    to_string($message.log_component) == \"SMTP\"\nthen\n    set_fields(\n        grok(\n            pattern: \"priority=%{WORD:priority}%{SPACE}fw_rule_id=%{INT:fw_rule_id}%{SPACE}user_name=%{QUOTEDSTRING:user_name}%{GREEDYDATA}from_email_address=%{QUOTEDSTRING:from_email_address}%{SPACE}to_email_address=%{QUOTEDSTRING:to_email_address}%{SPACE}email_subject=%{QUOTEDSTRING:email_subject}%{GREEDYDATA}src_domainname=%{QUOTEDSTRING:src_domain}\",\n            value: to_string($message.message),\n            only_named_captures: true\n        )\n    );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "aa24e9c2-8956-4fe9-a750-218da58185ca",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "b5e767e9-cd0c-42a9-94d7-8530d3da1880",
+              "timerange": {
+                "type": "relative",
+                "range": 86400
+              },
+              "filter": {
+                "type": "or",
+                "filters": [
+                  {
+                    "type": "stream",
+                    "filters": null,
+                    "id": "b42a2545-a358-40e3-821c-32ee83ab5513",
+                    "title": null
+                  }
+                ]
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "e754ccda-e8f5-4564-a234-e7f71a5fbcb2",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [
+                    {
+                      "id": "5ecaf9adcb6890d9f8e385b8",
+                      "type": "org.graylog2.decorators.SyslogSeverityMapperDecorator",
+                      "config": {
+                        "source_field": "priority",
+                        "target_field": "severity"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "type": "messages",
+                  "id": "61e6edac-a116-4c31-859b-d289f732d0de",
+                  "limit": 150
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2020-05-25T14:58:54.635Z"
+        },
+        "created_at": "2020-05-24T13:12:08.441Z",
+        "requires": {},
+        "state": {
+          "b5e767e9-cd0c-42a9-94d7-8530d3da1880": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "7d526158-ccc5-449b-a48e-9169ba106710": "Message Count",
+                "8748bcba-1813-4b0c-9ede-2af6eadca6b6": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "8748bcba-1813-4b0c-9ede-2af6eadca6b6",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "log_type",
+                    "src_ip_city_name",
+                    "src_ip_country_code",
+                    "src_ip",
+                    "dst_port",
+                    "protocol",
+                    "src_ip_geolocation"
+                  ],
+                  "show_message_row": false,
+                  "decorators": [
+                    {
+                      "id": "5ecaf9adcb6890d9f8e385b8",
+                      "type": "org.graylog2.decorators.SyslogSeverityMapperDecorator",
+                      "config": {
+                        "source_field": "priority",
+                        "target_field": "severity"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "7d526158-ccc5-449b-a48e-9169ba106710",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": null
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "7d526158-ccc5-449b-a48e-9169ba106710": [
+                "e754ccda-e8f5-4564-a234-e7f71a5fbcb2"
+              ],
+              "8748bcba-1813-4b0c-9ede-2af6eadca6b6": [
+                "61e6edac-a116-4c31-859b-d289f732d0de"
+              ]
+            },
+            "positions": {
+              "7d526158-ccc5-449b-a48e-9169ba106710": {
+                "col": 1,
+                "row": 5,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "8748bcba-1813-4b0c-9ede-2af6eadca6b6": {
+                "col": 1,
+                "row": 7,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG Firewall"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "0662a15d-3456-4450-a2b3-52c24125f422",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "b5e767e9-cd0c-42a9-94d7-8530d3da1880",
+              "timerange": {
+                "type": "relative",
+                "range": 86400
+              },
+              "filter": {
+                "type": "or",
+                "filters": [
+                  {
+                    "type": "stream",
+                    "filters": null,
+                    "id": "e53a8e5b-f13c-4f64-9eba-ae74337d0140",
+                    "title": null
+                  }
+                ]
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "!src_ip:10.71.1.* AND !src_ip:0.0.0.0"
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "e754ccda-e8f5-4564-a234-e7f71a5fbcb2",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [
+                    {
+                      "id": "5ecaf9adcb6890d9f8e385b8",
+                      "type": "org.graylog2.decorators.SyslogSeverityMapperDecorator",
+                      "config": {
+                        "source_field": "priority",
+                        "target_field": "severity"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "type": "messages",
+                  "id": "61e6edac-a116-4c31-859b-d289f732d0de",
+                  "limit": 150
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2020-05-29T01:45:05.779Z"
+        },
+        "created_at": "2020-05-24T13:12:08.441Z",
+        "requires": {},
+        "state": {
+          "b5e767e9-cd0c-42a9-94d7-8530d3da1880": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "7d526158-ccc5-449b-a48e-9169ba106710": "Message Count",
+                "8748bcba-1813-4b0c-9ede-2af6eadca6b6": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "8748bcba-1813-4b0c-9ede-2af6eadca6b6",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "log_type",
+                    "src_ip_city_name",
+                    "src_ip_country_code",
+                    "src_ip",
+                    "dst_port",
+                    "protocol",
+                    "src_ip_geolocation"
+                  ],
+                  "show_message_row": false,
+                  "decorators": [
+                    {
+                      "id": "5ecaf9adcb6890d9f8e385b8",
+                      "type": "org.graylog2.decorators.SyslogSeverityMapperDecorator",
+                      "config": {
+                        "source_field": "priority",
+                        "target_field": "severity"
+                      },
+                      "stream": null,
+                      "order": 0
+                    }
+                  ],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "7d526158-ccc5-449b-a48e-9169ba106710",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": null
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "7d526158-ccc5-449b-a48e-9169ba106710": [
+                "e754ccda-e8f5-4564-a234-e7f71a5fbcb2"
+              ],
+              "8748bcba-1813-4b0c-9ede-2af6eadca6b6": [
+                "61e6edac-a116-4c31-859b-d289f732d0de"
+              ]
+            },
+            "positions": {
+              "7d526158-ccc5-449b-a48e-9169ba106710": {
+                "col": 1,
+                "row": 5,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "8748bcba-1813-4b0c-9ede-2af6eadca6b6": {
+                "col": 1,
+                "row": 7,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG Firewall"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "b42a2545-a358-40e3-821c-32ee83ab5513",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG Firewall"
+        },
+        "stream_rules": [
+          {
+            "type": {
+              "@type": "string",
+              "@value": "PRESENCE"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "src_ip"
+            },
+            "value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": "src_ip fields must be present"
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "log_type"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "Firewall"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          }
+        ],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "AND"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Log Type Firewall"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "e53a8e5b-f13c-4f64-9eba-ae74337d0140",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos XG Firewall"
+        },
+        "stream_rules": [
+          {
+            "type": {
+              "@type": "string",
+              "@value": "PRESENCE"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "src_ip"
+            },
+            "value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": "src_ip fields must be present"
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "log_type"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "Firewall"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          }
+        ],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "AND"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Log Type Firewall"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.0+4ea5649"
+        }
+      ]
+    }
+  ]
+}
