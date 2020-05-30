@@ -5,6 +5,8 @@ Sophos XG Firewall - content pack, extraction rules, pipeline rules, streams, an
  - Content pack will be broken down
  - Contraints: Graylog-Server v3.3+
 
+![Sophos XG Dashboard](https://github.com/hackdefendr/SophosXG_Graylog/blob/master/SophosXG_Dashboard.png)
+
 Graylog Extractor Rules
  - XG Content Filter Log Type 
 ```YAML
