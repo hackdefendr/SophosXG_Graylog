@@ -2,7 +2,6 @@
 Sophos XG Firewall - content pack, extraction rules, pipeline rules, streams, and a dashboard
  - Be sure to edit each widget query
  - Content pack contains everything
- - Content pack will be broken down
  - Contraints: Graylog-Server v3.3+
 
 ![Sophos XG Dashboard](https://github.com/hackdefendr/SophosXG_Graylog/blob/master/SophosXG_Dashboard.png)
